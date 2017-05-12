@@ -159,13 +159,13 @@ document.onkeyup = function(event){
 
 window.onload = function() {
     $('#arrowUp').on('mousedown',function(){
-		timeoutId = setInterval(function() { buttonPress(87);}, 1);
+		timeoutId = setInterval(function() { buttonPress(87);}, 100);
 	}).on('mouseup mouseleave', function(){
 		clearInterval(timeoutId);
 		socket.emit('keyPress',{inputID:'up', state:false});
 	});
 	$('#arrowDown').on('mousedown',function(){
-		timeoutId = setInterval(function() { buttonPress(83);}, 1);
+		timeoutId = setInterval(function() { buttonPress(83);}, 100);
 	}).on('mouseup mouseleave', function(){
 		socket.emit('keyPress',{inputID:'down', state:false});
 		clearInterval(timeoutId);

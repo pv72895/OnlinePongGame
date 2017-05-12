@@ -12,22 +12,28 @@
 	vertical-align: middle;
 }
 
-#leftPaddles{
+#playerContainer{
 	position: relative;
-	float: top;
+}
+
+#leftPaddles{
+	display: inline-block;
+	position: relative;
+	float: left;
 	padding-bottom: 4px;
-	width:700px;
-	max-width: 700px;
+	width:300px;
+	max-width: 300px;
     height:110px;
 }
 
 #rightPaddles{
+	display: inline-block;
 	position: relative;
-	float: bottom;
+	float: left;
 	padding-bottom: 4px;
-	width:700px;
-	max-width: 700px;
-    height:650px;
+	width:300px;
+	max-width: 300px;
+    height:110px;
 }
 
 #ctx{
