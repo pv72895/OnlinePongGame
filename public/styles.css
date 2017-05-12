@@ -1,0 +1,55 @@
+#playerIcon{
+	float: left;
+	padding-left: 4px;
+	margin-left: 2px;
+	padding-right: 4px;
+	margin-right: 2px;
+	border-style: solid;
+	border-width: 2px;
+	height: 100px;
+	width: 100px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+#leftPaddles{
+	position: relative;
+	float: top;
+	padding-bottom: 4px;
+	width:700px;
+	max-width: 700px;
+    height:110px;
+}
+
+#rightPaddles{
+	position: relative;
+	float: bottom;
+	padding-bottom: 4px;
+	width:700px;
+	max-width: 700px;
+    height:650px;
+}
+
+#ctx{
+	float: top;
+	border:1px solid #000000;
+}
+
+#inner{
+	display: inline-block;
+}
+
+#outer{
+	width: 500px;
+	text-align: center;
+}
+
+#arrowUp{
+	width: 200px;
+	float: left;
+}
+
+#arrowDown{
+	width: 200px;
+	float: left;
+}

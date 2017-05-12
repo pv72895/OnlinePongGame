@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head><title>Multiplayer Pong</title></head>
+    <body>
+		
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+		<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+        <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        
+		<form name='pongGame'>
+		<div id='content' data-role="page" class="ui-content">
+			<div id='header' data-role="header">
+				<h1>Welcome to the Muliplayer Pong Game!</h1>
+			</div>
+			<div data-role="main" class="ui-field-contain">
+				<a href="#instructions" class="ui-btn">Instructions</a>
+                <p>Please register below: </p>
+                Username: <input type="text" id="userNam" name="userNam"/>
+				<label>
+					Spectator <input type="checkbox" name="spec" id="spec" value="spec"/>
+                </label>
+				<button type="button" class="ui-btn" onclick="login(document.pongGame.userNam.value);">Register</button>
+				<div id="alreadyLoggedIn"></div>
+			</div>
+			
+			<div id ="loginInfoScreen" class="ui-field-contain"></div>
+			
+			<canvas id='ctx' width='500' height='500'>
+			</canvas>
+			
+			<div id='outer' class='ui-content'>
+				<div id='inner' class='ui-content'><button type="button" id="arrowUp" class="ui-btn" data-inline="true">&uarr;</button></div>
+				<div id='inner' class='ui-content'><button type="button" id="arrowDown" class="ui-btn" data-inline="true">&darr;</button></div>
+			</div>
+			
+			<div id ="leftPaddles" class="ui-field-contain"></div>
+			<br>
+			<div id ="rightPaddles" class="ui-field-contain"></div>
+			
+		</div>
+		
+		<div data-role="page" data-dialog="true" id="instructions">
+			<div data-role="header">
+				<h1>Instructions</h1>
+			</div>
+
+			<div data-role="main" class="ui-content">
+				<p>The rules of the game are simple - Score on the other team!</p>
+				<p>Log in by typing in a user name and pressing submit. When you log in, you are assigned a team - the left paddle or the right paddle.
+				You control this paddle and move it up by pressing "W", the up arrow on your keyboard, 
+				or the up-button below the pong board. You move your paddle down by pressing "S", the down arrow
+				on your keyboard, or the down button below the pong board.</p>
+				<p>Here is the catch, though - for your paddle to move, everyone on your team must be in unison!
+				In other words, for your paddle to move up, everyone on your team must be attempting to move the paddle 
+				up! Below the pong board, you can see who is on your team and what button they are pressing.</p>
+				<p>If you wish to only watch and not be on a team, check the "spectator" box before hitting submit.
+				Happy ponging!</p>
+				
+				<a href="#content" class="ui-btn">Go back</a>
+			</div>
+
+			<div data-role="footer">
+				<h1>This game was created by Philip Vendola for CSE 264</h1>
+			</div>
+		</div> 
+		
+		<script type="text/javascript" src="scripts.js"></script>
+    
+    </body>
+</html>
