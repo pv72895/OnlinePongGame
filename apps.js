@@ -202,9 +202,9 @@ function determineMovement(players, team){
 	if (numUp > numDown){
 		moveUp = true;
 		moveDown = false;
-	} else if (moveUp < numDown) {
+	} else if (numUp < numDown) {
 		moveUp = false;
-		moveDown = false;
+		moveDown = true;
 	} else {
 		moveUp = false;
 		moveDown = false;
