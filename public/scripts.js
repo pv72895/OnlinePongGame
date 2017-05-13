@@ -14,8 +14,8 @@ ctx.font = '30px Arial';
 //Function for when the user attempts to login
 var login = function(enteredName){
 	if (loggedIn == false) {
-		if (enteredName.length > 7) {
-			loggedInString = "There is a 7 character length limit on user names. Try again.";
+		if (enteredName.length > 5) {
+			loggedInString = "There is a 5 character length limit on user names. Try again.";
 			document.getElementById('alreadyLoggedIn').innerHTML=loggedInString;
 		} else {
 			socket.emit('newPlayer', {
