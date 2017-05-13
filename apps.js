@@ -292,7 +292,7 @@ function updateBallPositionAndSpeed(paddleLX, paddleLY, paddleRX, paddleRY, ball
 				ballX += xSpeed;
 			} else {
 				xSpeed = -3 + (-1 * xSpeed);
-				if(xSpeed < (-1 * topSpd) {
+				if(xSpeed < (-1 * topSpd)) {
 					ballX = (-1 * topSpd);
 				}
 				ySpeed += (paddleRSpeed / 2);
