@@ -14,8 +14,8 @@ ctx.font = '30px Arial';
 //Function for when the user attempts to login
 var login = function(enteredName){
 	if (loggedIn == false) {
-		if (enteredName.length > 8) {
-			loggedInString = "There is a 8 character length limit on user names. Try again.";
+		if (enteredName.length > 7) {
+			loggedInString = "There is a 7 character length limit on user names. Try again.";
 			document.getElementById('alreadyLoggedIn').innerHTML=loggedInString;
 		} else {
 			socket.emit('newPlayer', {
@@ -83,7 +83,7 @@ socket.on('pongInfo', function(data){
 	
 	//Draw ball
 	ctx.beginPath();
-	ctx.arc(data.ballX, data.ballY, 10, 0, 2 * Math.PI, false);
+	ctx.arc(data.ballX, data.ballY, 5, 0, 2 * Math.PI, false);
 	ctx.fill();
 	ctx.stroke();
 	ctx.closePath();
