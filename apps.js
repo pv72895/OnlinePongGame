@@ -41,6 +41,7 @@ var paddleRSpeed = 0;
 
 //Speeds of the ball
 var maxSpd = 10;
+var topSpd = 16;
 var xSpd = 3;
 var ySpd = 0;
 var lastXSpd = 0;
@@ -271,6 +272,9 @@ function updateBallPositionAndSpeed(paddleLX, paddleLY, paddleRX, paddleRY, ball
 			} else {
 				//console.log("PADDLE Y: " + paddleLY + "BOTTOM Y: " + bottom_y);
 				xSpeed = 3 + (-1 * xSpeed);
+				if (xSpeed > topSpd) {
+					xSpeed = (topSpd);
+				}
 				ySpeed += (paddleLSpeed / 2);
 				ballX += (xSpeed + 2);
 			}
@@ -288,6 +292,9 @@ function updateBallPositionAndSpeed(paddleLX, paddleLY, paddleRX, paddleRY, ball
 				ballX += xSpeed;
 			} else {
 				xSpeed = -3 + (-1 * xSpeed);
+				if(xSpeed < (-1 * topSpd) {
+					ballX = (-1 * topSpd);
+				}
 				ySpeed += (paddleRSpeed / 2);
 				ballX += (xSpeed - 2);
 			}
