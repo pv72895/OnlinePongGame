@@ -109,24 +109,24 @@ socket.on('playerInfo', function(data){
 	for(var i = 0; i < data.length; i++){
 		if (data[i].team === "L"){
 			teamLString += "<div id='playerIcon'>";
-			teamLString += "<h2>" + data[i].name + "</h2>"
+			teamLString += data[i].name + ": "
 			if(data[i].isUp == true){
-				teamLString += "  UP  ";
+				teamLString += "&nbsp;&nbsp;&uarr;&nbsp; ";
 			} else if (data[i].isDown == true) {
-				teamLString += "  DOWN  ";
+				teamLString += "&nbsp;&nbsp;&darr;&nbsp; ";
 			} else {
-				teamLString += "  NA  ";
+				teamLString += "  NA";
 			}
 			teamLString += "</div>";
 		} else if (data[i].team === "R"){
 			teamRString += "<div id='playerIcon'>";
-			teamRString += "<h2>" + data[i].name + "</h2>"
+			teamRString += data[i].name + ": "
 			if(data[i].isUp == true){
-				teamRString += "  UP  ";
+				teamRString += "&nbsp;&nbsp;&uarr;&nbsp; ";
 			} else if (data[i].isDown == true) {
-				teamRString += "  DOWN  ";
+				teamRString += "&nbsp;&nbsp;&darr;&nbsp; ";
 			} else {
-				teamRString += "  NA  ";
+				teamRString += "  NA";
 			}
 			teamRString += "</div>";
 		}
