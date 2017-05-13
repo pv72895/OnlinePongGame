@@ -182,6 +182,7 @@ function determineMovement(players, team){
 	var groupedArrays = _.groupBy(players, "team");
 	var numUp = 0;
 	var numDown = 0;
+	var numNA = 0;
 	var moveUp = true;
 	var moveDown = true;
 	
@@ -198,11 +199,20 @@ function determineMovement(players, team){
 		if (groupedArrays[team][i].isDown == true) {
 			numDown++;
 		}
+		if (groupedArrays[team][i].isUp == false && groupedArrays[team][i].isDown == false){
+			numNA++;
+		}
 	}
-	if (numUp > numDown){
+	if (numUp > numDown && numUp > numNA){
 		moveUp = true;
 		moveDown = false;
-	} else if (numUp < numDown) {
+	} else if (numUp < numDown && numDown > numNA) {
+		moveUp = false;
+		moveDown = true;
+	} else if (numUp == numNA){
+		moveUp = true;
+		moveDown = false;
+	} else if (numDown == numNA) {
 		moveUp = false;
 		moveDown = true;
 	} else {
