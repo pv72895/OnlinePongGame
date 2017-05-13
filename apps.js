@@ -241,7 +241,7 @@ function updateBallPositionAndSpeed(paddleLX, paddleLY, paddleRX, paddleRY, ball
 			//Hit the top of the paddle
 			if(top_y == (paddleLY + paddleHeight) - 10 && paddleLSpeed != 0){
 				ySpeed += (paddleLSpeed);
-				ballX += xSpeed;
+				ballX += xSpeed ;
 			//Hit the bottom of the paddle
 			} else if(bottom_y == (paddleLY + 10) && paddleLSpeed != 0){
 				ySpeed += (paddleLSpeed);
@@ -250,7 +250,7 @@ function updateBallPositionAndSpeed(paddleLX, paddleLY, paddleRX, paddleRY, ball
 				//console.log("PADDLE Y: " + paddleLY + "BOTTOM Y: " + bottom_y);
 				xSpeed = 3;
 				ySpeed += (paddleLSpeed / 2);
-				ballX += xSpeed;
+				ballX += (xSpeed + 2);
 			}
 		}
 	} else {
@@ -267,7 +267,7 @@ function updateBallPositionAndSpeed(paddleLX, paddleLY, paddleRX, paddleRY, ball
 			} else {
 				xSpeed = -3;
 				ySpeed += (paddleRSpeed / 2);
-				ballX += xSpeed;
+				ballX += (xSpeed - 2);
 			}
 		}
 	}
