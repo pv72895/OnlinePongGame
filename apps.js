@@ -41,12 +41,14 @@ var paddleRSpeed = 0;
 
 //Speeds of the ball
 var maxSpd = 10;
-var topSpd = 16;
+var topSpd = 14;
 var xSpd = 3;
 var ySpd = 0;
 var lastXSpd = 0;
 var lastYSpd = 0;
 var onHold = false;
+
+var ballRadius = 5;
 
 //Scores
 var lScore = 0;
@@ -91,9 +93,7 @@ io.sockets.on('connection', function(socket){
 		while(nameCheck == 0){
 			nameCheck = 1;
 			for(var i in SOCKET_LIST){
-				console.log(i);
 				var testSocket = SOCKET_LIST[i];
-				console.log(testSocket.name);
 				if (testSocket.name === name) {
 					name = name + "#";
 					nameCheck = 0;
@@ -230,15 +230,15 @@ function updateBallPositionAndSpeed(paddleLX, paddleLY, paddleRX, paddleRY, ball
 	ballX += xSpeed;
 	ballY += ySpeed;
 	
-	var top_x = ballX - 10; //10 is the radius, will have to fix this eventually
-	var top_y = ballY - 10;
-	var bottom_x = ballX + 10;
-	var bottom_y = ballY  + 10;
+	var top_x = ballX - ballRadius; //2 is the radius, will have to fix this eventually
+	var top_y = ballY - ballRadius;
+	var bottom_x = ballX + ballRadius;
+	var bottom_y = ballY  + ballRadius;
 	
-	if(ballY - 10 < 0) { // hitting the bottom wall
+	if(ballY - ballRadius < 0) { // hitting the bottom wall
 		ballY = 5;
 		ySpeed = -ySpeed;
-	} else if(ballY + 10 > 500) { // hitting the top wall
+	} else if(ballY + ballRadius > 500) { // hitting the top wall
 		ballY = 495;
 		ySpeed = -ySpeed;
 	}
@@ -262,11 +262,11 @@ function updateBallPositionAndSpeed(paddleLX, paddleLY, paddleRX, paddleRY, ball
 		// hit the L player's paddle
 		if(top_y < (paddleLY + paddleHeight) && bottom_y > paddleLY && top_x < (paddleLX + paddleWidth) && bottom_x > paddleLX) {
 			//Hit the top of the paddle
-			if(top_y == (paddleLY + paddleHeight) - 10 && paddleLSpeed != 0){
+			if(top_y == (paddleLY + paddleHeight) - ballRadius && paddleLSpeed != 0){
 				ySpeed += (paddleLSpeed);
 				ballX += xSpeed ;
 			//Hit the bottom of the paddle
-			} else if(bottom_y == (paddleLY + 10) && paddleLSpeed != 0){
+			} else if(bottom_y == (paddleLY + ballRadius) && paddleLSpeed != 0){
 				ySpeed += (paddleLSpeed);
 				ballX += xSpeed;
 			} else {
@@ -276,27 +276,31 @@ function updateBallPositionAndSpeed(paddleLX, paddleLY, paddleRX, paddleRY, ball
 					xSpeed = (topSpd);
 				}
 				ySpeed += (paddleLSpeed / 2);
-				ballX += (xSpeed + 2);
+				//ballX += (xSpeed); */
+				//xSpeed = -1 * xSpeed;
+				ballX += xSpeed;
 			}
 		}
 	} else {
 		// hit the R player's paddle
 		if(top_y < (paddleRY + paddleHeight) && bottom_y > paddleRY && top_x < (paddleRX + paddleWidth) && bottom_x > paddleRX) {
 			//Hit the top of the paddle
-			if(top_y == (paddleRY + paddleHeight) - 10 && paddleRSpeed != 0){
+			if(top_y == (paddleRY + paddleHeight) - ballRadius && paddleRSpeed != 0){
 				ySpeed += (paddleRSpeed);
 				ballX += xSpeed;
 			//Hit the bottom of the paddle
-			} else if (bottom_y == (paddleRY + 10) && paddleLSpeed != 0){
+			} else if (bottom_y == (paddleRY + ballRadius) && paddleLSpeed != 0){
 				ySpeed += (paddleRSpeed);
 				ballX += xSpeed;
 			} else {
-				xSpeed = -3 + (-1 * xSpeed);
+			    xSpeed = -3 + (-1 * xSpeed);
 				if(xSpeed < (-1 * topSpd)) {
 					xSpeed = (-1 * topSpd);
 				}
 				ySpeed += (paddleRSpeed / 2);
-				ballX += (xSpeed - 2);
+				//ballX += (xSpeed); */
+				//xSpeed = -1 * xSpeed;
+				ballX += xSpeed;
 			}
 		}
 	}
