@@ -180,6 +180,8 @@ io.sockets.on('connection', function(socket){
 //Determine if a paddle should be moved or not (all players are in unison)
 function determineMovement(players, team){
 	var groupedArrays = _.groupBy(players, "team");
+	var numUp = 0;
+	var numDown = 0;
 	var moveUp = true;
 	var moveDown = true;
 	
@@ -190,12 +192,22 @@ function determineMovement(players, team){
 	}
 	
 	for( i in groupedArrays[team]) {
-		if (groupedArrays[team][i].isUp == false) {
-			moveUp = false;
+		if (groupedArrays[team][i].isUp == true) {
+			numUp++;
 		}
-		if (groupedArrays[team][i].isDown == false) {
-			moveDown = false;
+		if (groupedArrays[team][i].isDown == true) {
+			numDown++;
 		}
+	}
+	if (numUp > numDown){
+		moveUp = true;
+		moveDown = false;
+	} else if (moveUp < numDown) {
+		moveUp = false;
+		moveDown = false;
+	} else {
+		moveUp = false;
+		moveDown = false;
 	}
 	return [moveUp, moveDown];
 };
@@ -248,7 +260,7 @@ function updateBallPositionAndSpeed(paddleLX, paddleLY, paddleRX, paddleRY, ball
 				ballX += xSpeed;
 			} else {
 				//console.log("PADDLE Y: " + paddleLY + "BOTTOM Y: " + bottom_y);
-				xSpeed = 3;
+				xSpeed = 3 + (-1 * xSpeed);
 				ySpeed += (paddleLSpeed / 2);
 				ballX += (xSpeed + 2);
 			}
@@ -265,7 +277,7 @@ function updateBallPositionAndSpeed(paddleLX, paddleLY, paddleRX, paddleRY, ball
 				ySpeed += (paddleRSpeed);
 				ballX += xSpeed;
 			} else {
-				xSpeed = -3;
+				xSpeed = -3 + (-1 * xSpeed);
 				ySpeed += (paddleRSpeed / 2);
 				ballX += (xSpeed - 2);
 			}
